@@ -3,9 +3,10 @@
 // import { Human } from './scripts/human.js'
 // import { Wall } from './scripts/wall.js'
 
-import {setupGame} from './scripts/game_setup.js'
+import {setupGame, addPlants} from './scripts/game_setup.js'
 
 document.addEventListener("DOMContentLoaded", function() {
   setupGame()
+  addPlants()
 })
 
