@@ -3,8 +3,10 @@ canvas {
   display: block;
   position: absolute;
   margin: 0 auto;
-  top: 93px;
-  left: 79px;
+  top: 61px;
+  left: 47px;
+  // background-color: green;
+  // opacity: 0.5;
 }
 
 #game-container {
@@ -19,6 +21,11 @@ canvas {
   position: absolute;
   left: 100px;
   top: -20px;
+  z-index: -2;
+}
+
+img {
+  z-index: -1;
 }
 
 
