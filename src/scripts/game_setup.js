@@ -1,3 +1,28 @@
+class Display {
+  constructor() {
+    
+  }
+  setupGame() {
+    const Canvas = document.getElementById("game-canvas");
+    const ctx = Canvas.getContext("2d");
+    const container = document.getElementById("game-container")
+
+    var logo = document.createElement("img")
+    logo.src = './img/assets/pp-game-logo.png'
+    logo.width = 600
+    logo.className = 'logo'
+    container.appendChild(logo)
+
+    var base = document.createElement("img")
+    base.src = './img/assets/bg/base-floor.png'
+    base.width = 800
+    base.height = 600
+    base.id = 'base'
+    container.appendChild(base)
+  }
+}
+
+
 function setupGame() {
   const Canvas = document.getElementById("game-canvas");
   const ctx = Canvas.getContext("2d");
@@ -9,11 +34,12 @@ function setupGame() {
   logo.className = 'logo'
   container.appendChild(logo)
 
-  var lvl1 = document.createElement("img")
-  lvl1.src = './img/assets/bg/level-1.png'
-  lvl1.width = 800
-  lvl1.height = 600
-  container.appendChild(lvl1)
+  var base = document.createElement("img")
+  base.src = './img/assets/bg/base-floor.png'
+  base.width = 800
+  base.height = 600
+  base.id = 'base'
+  container.appendChild(base)
 }
 
 export { setupGame }

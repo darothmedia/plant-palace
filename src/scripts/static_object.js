@@ -1,5 +1,6 @@
 class StaticObject {
-  constructor(scene, x, y, textureKey, type) {
+  constructor(x, y, src) {
+    
   }
 }
 
