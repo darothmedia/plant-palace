@@ -16,17 +16,24 @@ canvas {
   width: 800px;
 }
 
-.logo {
+.shelves {
   display: block;
   position: absolute;
   left: 100px;
   top: -20px;
+}
+
+.base img {
   z-index: -2;
 }
 
-img {
-  z-index: -1;
-}
+// .floor {
+//   display: block;
+//   position: absolute;
+//   left: 100px;
+//   top: -20px;
+
+// }
 
 
 header img {

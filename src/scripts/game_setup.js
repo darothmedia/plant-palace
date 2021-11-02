@@ -1,28 +1,10 @@
+// import { container } from "webpack";
+
+import { Plant } from "./plant";
+
 class Display {
   constructor() {
 
-  }
-  setupGame() {
-    const Canvas = document.getElementById("game-canvas");
-    const ctx = Canvas.getContext("2d");
-    const container = document.getElementById("game-container")
-
-    var logo = document.createElement("img")
-    logo.src = './img/assets/pp-game-logo.png'
-    logo.width = 600
-    logo.className = 'logo'
-    container.appendChild(logo)
-
-    var base = document.createElement("img")
-    base.src = './img/assets/bg/base-floor.png'
-    base.width = 800
-    base.height = 600
-    base.id = 'base'
-    container.appendChild(base)
-  }
-
-  addPlants() {
-    
   }
 }
 
@@ -30,26 +12,21 @@ class Display {
 function setupGame() {
   const Canvas = document.getElementById("game-canvas");
   const ctx = Canvas.getContext("2d");
-  const container = document.getElementById("game-container")
+  let container = document.getElementById("game-container")
   
   var base = document.createElement("img")
-  base.src = './img/assets/bg/base-floor.png'
+  base.src = './img/assets/bg/level-1.png'
   base.width = 800
   base.height = 600
   base.className = 'base'
   container.appendChild(base)
+}
 
-  var logo = document.createElement("img")
-  logo.src = './img/assets/pp-game-logo.png'
-  logo.width = 600
-  logo.className = 'logo'
-  container.appendChild(logo)
-  // let logo = new Image()
-  // logo.onload = function () {
-  //   ctx.drawImage(logo, 0, 0)
-  // }
-  // logo.src = './img/assets/pp-game-logo-small.png'
-  // logo.width = 50
+function level1() {
+  let floor = document.createElement("img")
+  let container = document.getElementById("game-container")
+  floor.src = './img/assets/bg/level-1-tilemap.png'
+  container.appendChild(floor)
 }
 
 function xpos(x) { return 32 + (32 * x) }
@@ -91,16 +68,22 @@ function addPlants() {
       xx = xpos(getRandomInt(20))
       yy = ypos(getRandomInt(12))
     }
-
-    let plantindex = plants[getRandomInt(15)]
+    console.log(xx)
+    let plantindex = './img/assets/plants/sized/' + plants[getRandomInt(15)]
     plantloc.push([xx, yy])
 
-    let plant = new Image()
-    plant.onload = function () {
-      ctx.drawImage(plant, xx, yy)
-    }
-    plant.src = './img/assets/plants/sized/' + plantindex
+    let plant = new Plant(xx, yy, plantindex);
+    plant.draw(xx, yy);
+
+    // let plant = new Image()
+
+
+    // plant.onload = function () {
+    //   ctx.drawImage(plant, xx, yy)
+    // }
+    // plant.src = './img/assets/plants/sized/' + plantindex
   }
+  console.log(plantloc)
   
   // let plant = new Image()
   // plant.onload = function() {
@@ -123,4 +106,4 @@ function addPlants() {
 //   plantloc.push([plant.x, plant.y])
 // }
 
-export { setupGame, addPlants }
+export { setupGame, addPlants, level1 }
