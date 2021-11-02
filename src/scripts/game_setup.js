@@ -26,7 +26,7 @@ export class Display {
     'bamboo-tall.png',
     'cherry-tree-tall.png',
     'man-eater-tall.png',
-    'tree-tall.png',
+    // 'tree-tall.png',
     'tree-short.png',
     'vase-tall.png',
     'medium-cactus.png',
@@ -35,22 +35,23 @@ export class Display {
     'plant-red-medium.png',
     'plant-yellow-medium.png',
     'plant-orange-medium.png',
-    'plant-green-tall.png'
-    // 'snake-plant-tall.png',
+    // 'plant-green-tall.png',
+    'snake-plant-tall.png'
   ]
 
-  for (let i = 0; i < 30; i++) {
+  for (let i = 0; i < 50; i++) {
     let xx = this.xpos(this.getRandomInt(20))
     let yy = this.ypos(this.getRandomInt(12))
     while (plantloc.includes([xx, yy])) {
       xx = this.xpos(this.getRandomInt(20))
       yy = this.ypos(this.getRandomInt(12))
     }
-    let plantindex = './img/assets/plants/sized/' + plants[this.getRandomInt(15)]
-    plantloc.push([xx, yy])
+    let plantindex = './img/assets/plants/sized/' + plants[this.getRandomInt(16)]
 
     let plant = new Plant(xx, yy, plantindex);
+    plantloc.push(plant.ul, plant.ll, plant.lr, plant.ur)
     plant.draw(xx, yy);
   }
+  console.log(plantloc)
 }
 }
