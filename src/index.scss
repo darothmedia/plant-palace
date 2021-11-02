@@ -30,11 +30,6 @@ canvas {
   // opacity: 0.5;
 }
 
-#player-canvas {
-  // background-color: green;
-  // opacity: 0.5;
-}
-
 #game-container {
   display: block;
   position: relative;
@@ -52,8 +47,6 @@ canvas {
 .base img {
   z-index: -2;
 }
-
-
 
 .buttons button a {
   text-decoration: none;
