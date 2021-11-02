@@ -1,9 +1,9 @@
 import { MovingObject } from './moving_object.js'
 
-class Human extends MovingObject {
-  constructor(scene, x, y, textureKey) {
-    super(scene, x, y, textureKey, 'Player')
+export class Human extends MovingObject {
+  constructor (x, y, src) {
+    super(x, y, src)
+    // this.width = 32
+    // this.height = 64
   }
 }
-
-export { Human };

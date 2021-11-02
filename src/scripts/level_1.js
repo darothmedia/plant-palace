@@ -9,8 +9,6 @@ function level1_setup() {
   base.height = 600
   base.className = 'base'
   container.appendChild(base)
-
-  
 }
 
 export {level1_setup}

@@ -6,50 +6,88 @@
 import { Display } from './scripts/game_setup.js'
 import { level1_setup } from './scripts/level_1.js'
 
+
+
 document.addEventListener("DOMContentLoaded", function() {
   let display = new Display()
   display.level_setup(1)
-  display.addPlants()
+  // display.addHuman()
+  const canvas = document.getElementById("game-canvas");
+  const ctx = canvas.getContext("2d");
 
-  var canvas = document.querySelector('game-canvas')
-  
-  // canvas.addEventListener('click', function (event) {
-  //   var x = event.pageX - canvasLeft
-  //   var y = event.pageY = canvasTop
+  const pcanvas = document.getElementById("player-canvas");
+  const pctx = pcanvas.getContext("2d");
+  display.addPlants(ctx)
+  display.addHuman(pctx)
 
-  //   console.log([x, y])
-  // })
+  var human = display.human
+  var keys = []
+  window.addEventListener('keydown', function(e){
+    keys[e.key] = true
+    console.log(keys)
+  });
+  window.addEventListener('keyup', function (e){
+    delete keys[e.key];
+  });
 
-})
-// window.onload = function() {
-      // context = canvas.getContext('2d'),
-      // elements = []
-      // canvasLeft = canvas.offsetLeft + canvas.clientLeft,
-      // canvasTop = canvas.offsetTop + canvas.clientTop
+  function draw(x, y, ctx) {
+    let drawing = new Image()
+    drawing.src = human.src
+    ctx.drawImage(drawing, x, y)
+  }
 
+  window.setInterval(function () { 
+    movePlayer(); 
+    pctx.clearRect(0, 0, pcanvas.width, pcanvas.height)
+    draw(human.x, human.y, pctx)}, 1)
 
-  
+  function animate() {
+    movePlayer()
+    // requestAnimationFrame(animate)
+  }
 
-  // canvas.addEventListener('keydown', doKeyDown, true)
+  animate();
 
-  let activeObject;
+  function validMove() {
+    if (keys['ArrowUp'] && human.y < 32) {return false}
+    if (keys['ArrowDown'] && human.y > 384) {return false}
+    if (keys['ArrowLeft'] && human.x < 32) {return false}
+    if (keys['ArrowRight'] && human.x > 640) {return false}
+  }
 
-  function doKeyDown(e) {
-    if (e.keyCode === 87 || e.keyCode === 38) {
-      activeObject.move(0, -32)
+  function movePlayer() {
+    if (keys['ArrowUp'] && (human.y > 0)) {
+      human.y -= 1;
+      console.log('moved up')
     }
-    if (e.keyCode === 83 || e.keyCode === 40) {
-      activeObject.move(0, 32)
+    else if (keys['ArrowDown'] && human.y < 384) {
+      human.y += 1;
+      console.log('moved down')
     }
-    if (e.keyCode === 65 || e.keyCode === 37) {
-      activeObject.move(-32, 0)
+    else if (keys['ArrowLeft'] && human.x > 32) {
+      human.x -= 1;
+      console.log('moved left')
     }
-    if (e.keyCode === 68 || e.keyCode === 39) {
-      activeObject.move(32, 0)
+    else if (keys['ArrowRight'] && human.x < 640) {
+      human.x += 1;
+      console.log('moved right')
+    } else {
+      
     }
   }
-// }
+  
+})
 
-
-let modifier = 32
-
+// function doKeyDown(e) {
+//   if (e.keyCode === 87 || e.keyCode === 38) {
+//     human.move([0, -32])
+//   }
+//   if (e.keyCode === 83 || e.keyCode === 40) {
+//     human.move([0, 32])
+//   }
+//   if (e.keyCode === 65 || e.keyCode === 37) {
+//     human.move([-32, 0])
+//   }
+//   if (e.keyCode === 68 || e.keyCode === 39) {
+//     human.move([32, 0])
+//   }
