@@ -4,7 +4,6 @@ import { Plant } from "./plant";
 
 class Display {
   constructor() {
-
   }
 }
 
@@ -74,36 +73,9 @@ function addPlants() {
 
     let plant = new Plant(xx, yy, plantindex);
     plant.draw(xx, yy);
-
-    // let plant = new Image()
-
-
-    // plant.onload = function () {
-    //   ctx.drawImage(plant, xx, yy)
-    // }
-    // plant.src = './img/assets/plants/sized/' + plantindex
   }
   console.log(plantloc)
-  
-  // let plant = new Image()
-  // plant.onload = function() {
-  //   ctx.drawImage(plant, 10, 30)
-  // }
-  // plant.src = './img/assets/plants/sized/man-eater-tall.png'
 
 }
-
-
-// for (let i = 0; i < 15; i++) {
-//   let xx = xpos(getRandomInt(20))
-//   let yy = ypos(getRandomInt(13))
-//   while (plantloc.includes([xx, yy])) {
-//     xx = xpos(getRandomInt(20))
-//     yy = ypos(getRandomInt(13))
-//   }
-//   let plantindex = plants[getRandomInt(3)]
-
-//   plantloc.push([plant.x, plant.y])
-// }
 
 export { setupGame, addPlants, level1 }
