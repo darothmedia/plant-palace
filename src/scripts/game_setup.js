@@ -1,48 +1,29 @@
 // import { container } from "webpack";
 
 import { Plant } from "./plant";
+import { level1_setup } from "./level_1";
 
-class Display {
+export class Display {
   constructor() {
   }
-}
 
+  xpos(x) { return 32 + (32 * x) }
+  ypos(y) { return 32 * y }
 
-function setupGame() {
-  const Canvas = document.getElementById("game-canvas");
-  const ctx = Canvas.getContext("2d");
-  let container = document.getElementById("game-container")
-  
-  var base = document.createElement("img")
-  base.src = './img/assets/bg/level-1.png'
-  base.width = 800
-  base.height = 600
-  base.className = 'base'
-  container.appendChild(base)
-}
+  getRandomInt(max) {
+    return Math.floor(Math.random() * max);
+  }
 
-function level1() {
-  let floor = document.createElement("img")
-  let container = document.getElementById("game-container")
-  floor.src = './img/assets/bg/level-1-tilemap.png'
-  container.appendChild(floor)
-}
+  level_setup(level) {
+    if (level === 1) return level1_setup()
+  }
 
-function xpos(x) { return 32 + (32 * x) }
-function ypos(y) { return 32 * y }
-function getRandomInt(max) {
-  return Math.floor(Math.random() * max);
-}
-
-var plantloc = []
-
-
-function addPlants() {
+  addPlants() {
+  var plantloc = []
   const plants = [
     'leafy-plant-short.png',
     'bonsai-short.png',
     'bamboo-tall.png',
-    // 'snake-plant-tall.png',
     'cherry-tree-tall.png',
     'man-eater-tall.png',
     'tree-tall.png',
@@ -55,27 +36,21 @@ function addPlants() {
     'plant-yellow-medium.png',
     'plant-orange-medium.png',
     'plant-green-tall.png'
+    // 'snake-plant-tall.png',
   ]
-  
-  const Canvas = document.getElementById("game-canvas");
-  const ctx = Canvas.getContext("2d");
 
   for (let i = 0; i < 30; i++) {
-    let xx = xpos(getRandomInt(20))
-    let yy = ypos(getRandomInt(12))
+    let xx = this.xpos(this.getRandomInt(20))
+    let yy = this.ypos(this.getRandomInt(12))
     while (plantloc.includes([xx, yy])) {
-      xx = xpos(getRandomInt(20))
-      yy = ypos(getRandomInt(12))
+      xx = this.xpos(this.getRandomInt(20))
+      yy = this.ypos(this.getRandomInt(12))
     }
-    console.log(xx)
-    let plantindex = './img/assets/plants/sized/' + plants[getRandomInt(15)]
+    let plantindex = './img/assets/plants/sized/' + plants[this.getRandomInt(15)]
     plantloc.push([xx, yy])
 
     let plant = new Plant(xx, yy, plantindex);
     plant.draw(xx, yy);
   }
-  console.log(plantloc)
-
 }
-
-export { setupGame, addPlants, level1 }
+}
