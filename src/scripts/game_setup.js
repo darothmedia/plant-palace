@@ -63,7 +63,6 @@ export class Display {
     human.draw(224, 128, ctx)
     humanloc.push(human.ul, human.ll, human.lr, human.ur)
     humanloc.forEach((loc) => {this.loc.push(loc)})
-    console.log(this.loc)
     this.human = human
   }
 
