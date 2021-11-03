@@ -26,6 +26,7 @@ document.addEventListener("DOMContentLoaded", function() {
   var human = display.human
   var keys = []
   window.addEventListener('keydown', function(e){
+    e.preventDefault()
     keys[e.key] = true
   });
   window.addEventListener('keyup', function (e){
@@ -59,6 +60,10 @@ document.addEventListener("DOMContentLoaded", function() {
       ctx.fillText("No", 430, 300)
     }, 2000)
 
+    function reset() {
+
+    }
+
     window.addEventListener('click', function(e){
       const rect = canvas.getBoundingClientRect();
       const lx = e.clientX - rect.left;
@@ -73,11 +78,19 @@ document.addEventListener("DOMContentLoaded", function() {
         ctx.fillText("Resetting!", 225, 250)
         window.setTimeout(function () {
           ctx.clearRect(0, 0, pcanvas.width, pcanvas.height)
+          human.x = 224
+          human.y = 128
         }, 2000)
-
+        reset()
       }
       else if ((lx > 405 && lx < 500) && (ly > 265 && ly < 315)) {
         console.log(`Goodbye!`)
+        ctx.clearRect(0, 0, pcanvas.width, pcanvas.height)
+        ctx.fillStyle = "black"
+        ctx.fillRect(32, 32, canvas.width - 64, canvas.height - 97)
+        ctx.font = "50px Arial";
+        ctx.fillStyle = 'white'
+        ctx.fillText("Goodbye!", 225, 250)
       }
 
     })
