@@ -20,6 +20,7 @@ document.addEventListener("DOMContentLoaded", function() {
   
   display.addHuman(pctx)
   display.addPlants(ctx)
+  animate();
   
 
   var human = display.human
@@ -37,17 +38,54 @@ document.addEventListener("DOMContentLoaded", function() {
     ctx.drawImage(drawing, x, y)
   }
 
-  window.setInterval(function () { 
-    movePlayer(); 
-    pctx.clearRect(0, 0, pcanvas.width, pcanvas.height)
-    draw(human.x, human.y, pctx)}, 1)
-
   function animate() {
-    movePlayer()
-    // requestAnimationFrame(animate)
+    window.setInterval(function () {
+      movePlayer();
+      pctx.clearRect(0, 0, pcanvas.width, pcanvas.height)
+      draw(human.x, human.y, pctx)
+    }, 1)
   }
 
-  animate();
+  function replay() {
+    window.setTimeout(function () {
+      ctx.clearRect(0, 0, pcanvas.width, pcanvas.height)
+      ctx.fillStyle = "black"
+      ctx.fillRect(32, 32, canvas.width - 64, canvas.height - 97)
+      ctx.font = "50px Arial";
+      ctx.fillStyle = 'white'
+      ctx.fillText("Play Again?", 225, 250)
+      ctx.font = "30px Arial";
+      ctx.fillText("Yes", 240, 300)
+      ctx.fillText("No", 430, 300)
+    }, 2000)
+
+    window.addEventListener('click', function(e){
+      const rect = canvas.getBoundingClientRect();
+      const lx = e.clientX - rect.left;
+      const ly = e.clientY - rect.top;
+      if ((lx > 226 && lx < 300) && (ly > 265 && ly < 315)) {
+        console.log(`Let's play again`)
+        ctx.clearRect(0, 0, pcanvas.width, pcanvas.height)
+        ctx.fillStyle = "black"
+        ctx.fillRect(32, 32, canvas.width - 64, canvas.height - 97)
+        ctx.font = "50px Arial";
+        ctx.fillStyle = 'white'
+        ctx.fillText("Resetting!", 225, 250)
+        window.setTimeout(function () {
+          ctx.clearRect(0, 0, pcanvas.width, pcanvas.height)
+        }, 2000)
+
+      }
+      else if ((lx > 405 && lx < 500) && (ly > 265 && ly < 315)) {
+        console.log(`Goodbye!`)
+      }
+
+    })
+    
+
+  }
+
+  
 
   function validMove() {
     if (keys['ArrowUp'] && human.y > 0 ) {return false}
@@ -58,25 +96,32 @@ document.addEventListener("DOMContentLoaded", function() {
 
   function movePlayer() {
     
-    /////// UP KEYS ///////////
+    /////// UP WALLS ///////////
     if (keys['ArrowUp'] && (human.x < 220 && human.y === 190)) { }
     else if (keys['ArrowUp'] && ((human.x > 262 && human.x < 320) && human.y === 190)) { }
     else if (keys['ArrowUp'] && (human.x < 405 && human.y === 280)) { }
+
+    ////// UP GAME BORDER ///////
     else if (keys['ArrowUp'] && (human.y > 0)) {
       human.y -= 1;
     }
-     /////// DOWN KEYS ///////////
+     /////// DOWN WALLS ///////////
     else if (keys['ArrowDown'] && (human.x < 220 && human.y === 154)) {} 
     else if (keys['ArrowDown'] && ((human.x < 281 && human.x > 262) && human.y === 154)) {}
     else if (keys['ArrowDown'] && (human.x < 405 && human.y === 250)) {}
+
+    ////// DOWN GAME BORDER ///////
     else if (keys['ArrowDown'] && human.y < 384) {
       human.y += 1;
     }
 
-     /////// LEFT KEYS ///////////
-    else if (keys['ArrowLeft'] && (human.y < 153 && human.x === 320)) { }
-    // else if (keys['ArrowLeft'] && (human.y < 153 && human.x === 320)) { }
-    else if (keys['ArrowLeft'] && (human.y > 279 && human.x < 150)) {
+     /////// LEFT WALLS ///////////
+    else if (keys['ArrowLeft'] && (human.y < 190 && human.x === 320)) { }
+    else if (keys['ArrowLeft'] && ((human.y > 270 && human.y < 300) && human.x === 190)) { }
+    // else if (keys['ArrowLeft'] && ((human.y > 300 && human.y < 384) && human.x === 190)) { }
+
+    /////// WIN STATE ///////////
+    else if (keys['ArrowLeft'] && (human.y > 260 && human.x < 150)) {
       console.log('winner!')
       ctx.beginPath();
       ctx.clearRect(0, 0, canvas.width, canvas.height)
@@ -85,13 +130,18 @@ document.addEventListener("DOMContentLoaded", function() {
       ctx.font = "50px Arial";
       ctx.fillStyle = 'white'
       ctx.fillText("Nicely Done", 225, 250)
+      replay()
     }
+
+     /////// LEFT GAME BORDER ///////////
     else if (keys['ArrowLeft'] && (human.x > 32)) {
       human.x -= 1;
     }
 
-     /////// RIGHT KEYS ///////////
+     /////// RIGHT WALLS ///////////
     else if (keys['ArrowRight'] && (human.x === 280 && human.y < 170)) {}
+
+    /////// RIGHT GAME BORDER ///////////
     else if (keys['ArrowRight'] && human.x < 640) {
       human.x += 1;
     } 
