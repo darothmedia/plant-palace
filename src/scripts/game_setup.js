@@ -66,8 +66,4 @@ export class Display {
     this.human = human
   }
 
-  
-
-  
-
 }

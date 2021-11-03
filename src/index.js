@@ -57,19 +57,26 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 
   function movePlayer() {
+    
+    /////// UP KEYS ///////////
     if (keys['ArrowUp'] && (human.x < 220 && human.y === 190)) { }
-    // else if (keys['ArrowUp'] && ((human.x > 250 || human.x < 217) && human.y === 190)) { }
+    else if (keys['ArrowUp'] && ((human.x > 262 && human.x < 320) && human.y === 190)) { }
+    else if (keys['ArrowUp'] && (human.x < 405 && human.y === 280)) { }
     else if (keys['ArrowUp'] && (human.y > 0)) {
       human.y -= 1;
     }
+     /////// DOWN KEYS ///////////
     else if (keys['ArrowDown'] && (human.x < 220 && human.y === 154)) {} 
-    else if (keys['ArrowDown'] && ((human.x < 280 && human.x > 250) && human.y === 154)) {}
+    else if (keys['ArrowDown'] && ((human.x < 281 && human.x > 262) && human.y === 154)) {}
     else if (keys['ArrowDown'] && (human.x < 405 && human.y === 250)) {}
     else if (keys['ArrowDown'] && human.y < 384) {
       human.y += 1;
     }
+
+     /////// LEFT KEYS ///////////
     else if (keys['ArrowLeft'] && (human.y < 153 && human.x === 320)) { }
-    else if (keys['ArrowLeft'] && (human.y > 300 && human.x < 150)) {
+    // else if (keys['ArrowLeft'] && (human.y < 153 && human.x === 320)) { }
+    else if (keys['ArrowLeft'] && (human.y > 279 && human.x < 150)) {
       console.log('winner!')
       ctx.beginPath();
       ctx.clearRect(0, 0, canvas.width, canvas.height)
@@ -79,16 +86,15 @@ document.addEventListener("DOMContentLoaded", function() {
       ctx.fillStyle = 'white'
       ctx.fillText("Nicely Done", 225, 250)
     }
-
-    else if (keys['ArrowRight'] && (human.x === 280 && human.y < 200)) {
-    }
-
-    else if (keys['ArrowRight'] && human.x < 640) {
-      human.x += 1;
-      // console.log('moved right')
-    } else if (keys['ArrowLeft'] && (human.x > 32)) {
+    else if (keys['ArrowLeft'] && (human.x > 32)) {
       human.x -= 1;
     }
+
+     /////// RIGHT KEYS ///////////
+    else if (keys['ArrowRight'] && (human.x === 280 && human.y < 170)) {}
+    else if (keys['ArrowRight'] && human.x < 640) {
+      human.x += 1;
+    } 
   }
   
 })
