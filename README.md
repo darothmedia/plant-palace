@@ -61,7 +61,6 @@ This project will implement the following technologies:
 
 * Canvas API: to render the game board
 * Webpack to bundle the source JS code
-* Phaser 3 JS game framework for user input control
 
 ### **Implementation Timeline**
 
