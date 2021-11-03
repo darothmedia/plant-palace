@@ -30,6 +30,13 @@ canvas {
   // opacity: 0.5;
 }
 
+#furniture-canvas {
+  top: 35px;
+  left: 0px;
+  // background-color: green;
+  // opacity: 0.5;
+}
+
 #game-container {
   display: block;
   position: relative;
@@ -65,14 +72,6 @@ canvas {
 .buttons button a {
   text-decoration: none;
 }
-
-// .floor {
-//   display: block;
-//   position: absolute;
-//   left: 100px;
-//   top: -20px;
-
-// }
 
 
 header img {
