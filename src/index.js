@@ -236,7 +236,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     ////// UP GAME BORDER ///////
     else if (keys['ArrowUp'] && ((human.y > 0) && 
-    ((level1Obstacles[Math.floor(human.y / 32) - 1][Math.floor(human.x / 32)] < 0) 
+    ((level1Obstacles[Math.floor(human.y / 32)][Math.floor(human.x / 32)] < 0) 
       // && (validloc[Math.floor(human.y / 32)][Math.floor(human.x / 32)] > 0)
     ))) {
       human.y -= 1;
