@@ -9,7 +9,7 @@ In 2020, in the midst of a global pandemic, you decided to replace the void of p
 
 ### **Overview**
 
-The game is structured like the classic “Rush Hour” game, where you need to move cars out of the way in order to clear a path. 
+The game is a maze navigation game where you need to get around all the plants in your apartment to reach your objective.
 
 Your apartment is a rectangular grid. The size of your apartment will change and get progressively smaller (more difficult) as the game progresses. The levels are:
 
@@ -19,32 +19,26 @@ Your apartment is a rectangular grid. The size of your apartment will change and
 
 The user will be given several objectives in each level. An objective will look like this:
 
-**I need to pee! Clear a path from the bedroom to the bathroom**
+**I need to pee! Get me to the bathroom**
 
-There will be lots of plants obstructing the path. Move them out of the way so your player avatar can safely move to the target location.
+There will be lots of plants obstructing the path. Navigate around them so your player avatar can safely move to the target location.
 
 
 ### **Functionality & MVPs**
 
 In Plant Palace, users will be able to:
 
-
-
-* Start, pause, and reset the game board
-* Move plants on a top-down 2D grid (up down right left)
+* Start and reset the game board
 * Move a player on the grid (up down right left)
 * Receive objectives & view the timer for the given objective
 
 In addition, this project will include:
-
-
 
 * Canvas objects:
     * Plants (top down)
     * Human avatar (top down)
     * Boundaries (walls, furniture)
 * New game / restart buttons
-* An about & Instructions modal
 * A production README
 
 
@@ -56,8 +50,6 @@ In addition, this project will include:
 ### **Technologies, Libraries, APIs**
 
 This project will implement the following technologies:
-
-
 
 * Canvas API: to render the game board
 * Webpack to bundle the source JS code
