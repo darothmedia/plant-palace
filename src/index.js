@@ -6,6 +6,8 @@
 import { Display } from './scripts/game_setup.js'
 import { level1_setup, level1Obstacles, level1MBC, validPlants, levelClear } from './scripts/level_1.js'
 
+
+
 document.addEventListener("DOMContentLoaded", function() {
   let display = new Display()
   display.level_setup(1)
@@ -282,7 +284,7 @@ document.addEventListener("DOMContentLoaded", function() {
      /////// LEFT GAME BORDER ///////////
     else if (keys['ArrowLeft'] && ((human.x > 32) &&
     ((level1Obstacles[Math.floor(human.y / 32)][Math.floor((human.x - 32) / 32)] < 0)
-      && (validPlants[Math.floor(human.y / 32)][Math.floor(human.x / 32)] < 0 )
+      && (validPlants[Math.floor(human.y / 32)][Math.floor(human.x / 32)] > -3 )
     ))) {
       human.x -= 1;
     }
@@ -291,9 +293,9 @@ document.addEventListener("DOMContentLoaded", function() {
     else if (keys['ArrowRight'] && (human.x === 280 && human.y < 170)) {}
 
     /////// RIGHT GAME BORDER ///////////
-    else if (keys['ArrowRight'] && (human.x < 640 && 
+    else if (keys['ArrowRight'] && (human.x < 639 && 
       ((level1Obstacles[Math.floor(human.y / 32)][Math.floor(human.x / 32)] < 0)
-      && (validPlants[Math.floor(human.y / 32)][Math.floor(human.x / 32)] < 0)
+      && (validPlants[Math.floor(human.y / 32)][Math.floor(human.x / 32) + 1] > -3)
       ))) {
       human.x += 1;
     } 
