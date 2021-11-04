@@ -63,7 +63,7 @@ export class Display {
     
     plant.draw(xx, yy, ctx);
   }
-  console.log(this.validloc)
+  // console.log(this.validloc)
     plantloc.forEach((loc) => { this.loc.push(loc) })
     // console.log(this.plantsloc)
 }
