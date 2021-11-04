@@ -283,8 +283,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
      /////// LEFT GAME BORDER ///////////
     else if (keys['ArrowLeft'] && ((human.x > 32) &&
-    ((level1Obstacles[Math.floor(human.y / 32)][Math.floor((human.x - 32) / 32)] < 0)
-      && (validPlants[Math.floor(human.y / 32)][Math.floor(human.x / 32)] > -3 )
+    ((level1Obstacles[Math.floor(human.y / 32)][Math.floor(human.x / 32) - 1] < 0)
+      && (validPlants[Math.floor(human.y / 32)][Math.floor(human.x / 32)] < 0 )
     ))) {
       human.x -= 1;
     }
