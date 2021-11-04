@@ -19,9 +19,9 @@
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.7.2",
- "tileheight":32,
+ "tileheight":8,
  "tilesets":[],
- "tilewidth":32,
+ "tilewidth":8,
  "type":"map",
  "version":"1.6",
  "width":80
