@@ -1,10 +1,5 @@
-// import { Furniture } from './scripts/furniture.js'
-// import { Plant } from './scripts/plant.js'
-// import { Human } from './scripts/human.js'
-// import { Wall } from './scripts/wall.js'
-
 import { Display } from './scripts/game_setup.js'
-import { level1_setup, level1Obstacles, level1MBC, validPlants, levelClear } from './scripts/level_1.js'
+import { level1Obstacles, validPlants, levelClear, validity } from './scripts/level_1.js'
 
 
 
@@ -244,7 +239,7 @@ document.addEventListener("DOMContentLoaded", function() {
     ////// UP GAME BORDER ///////
     else if (keys['ArrowUp'] && ((human.y > 0) && 
     ((level1Obstacles[Math.floor(human.y / 32) - 1][Math.floor(human.x / 32)] < 0) 
-      // && (validPlants[Math.floor(human.y / 32)][Math.floor(human.x / 32)] < 0 || validPlants[Math.ceil(human.y / 32)][Math.ceil(human.x / 32)] < 0)
+      // && (validloc[Math.floor(human.y / 32)][Math.floor(human.x / 32)] > 0)
     ))) {
       human.y -= 1;
     }
@@ -256,7 +251,7 @@ document.addEventListener("DOMContentLoaded", function() {
     ////// DOWN GAME BORDER ///////
     else if (keys['ArrowDown'] && ((human.y < 384) && 
     ((level1Obstacles[Math.floor(human.y / 32) + 1][Math.floor(human.x / 32)] < 0) 
-      // && (validPlants[Math.floor(human.y / 32) + 1][Math.floor(human.x / 32)] < 0 || validPlants[Math.ceil(human.y / 32)][Math.ceil(human.x / 32)] < 0)
+      // && (validloc[Math.floor(human.y / 32)][Math.floor(human.x / 32)] > 0)
     ))) {
       human.y += 1;
     }
@@ -284,7 +279,7 @@ document.addEventListener("DOMContentLoaded", function() {
      /////// LEFT GAME BORDER ///////////
     else if (keys['ArrowLeft'] && ((human.x > 32) &&
     ((level1Obstacles[Math.floor(human.y / 32)][Math.floor(human.x / 32) - 1] < 0)
-      // && (validPlants[Math.floor(human.y / 32)][Math.floor(human.x / 32)] < 0 )
+      // && (validloc[Math.floor(human.y / 32)][Math.floor(human.x / 32) + 1] < 0 )
     ))) {
       human.x -= 1;
     }
@@ -295,7 +290,7 @@ document.addEventListener("DOMContentLoaded", function() {
     /////// RIGHT GAME BORDER ///////////
     else if (keys['ArrowRight'] && (human.x < 639 && 
       ((level1Obstacles[Math.floor(human.y / 32)][Math.floor(human.x / 32)] < 0)
-      // && (validPlants[Math.floor(human.y / 32)][Math.floor(human.x / 32) + 1] > -3)
+      // && (validloc[Math.floor(human.y / 32)][Math.floor(human.x / 32)] > 0)
       ))) {
       human.x += 1;
     } 

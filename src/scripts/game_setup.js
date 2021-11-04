@@ -1,14 +1,14 @@
 // import { container } from "webpack";
 
 import { Plant } from "./plant";
-import { level1Obstacles, level1_setup, level1MBC, validPlants } from "./level_1";
+import { level1Obstacles, level1_setup, level1MBC, validPlants, validity } from "./level_1";
 import { Human } from "./human";
 
 export class Display {
   constructor() {
     this.loc = []
     this.plantsloc = []
-    this.validloc = Array.from(validPlants)
+    this.validloc = Array.from(validity)
   }
 
   xpos(x) { return 32 + (32 * x) }
@@ -44,12 +44,12 @@ export class Display {
     'snake-plant-tall.png'
   ]
 
-  for (let i = 0; i < 50; i++) {
+  for (let i = 0; i < 55; i++) {
     let randx = this.getRandomInt(20)
     let randy = this.getRandomInt(12)
     let xx = this.xpos(randx)
     let yy = this.ypos(randy)
-    while (this.validloc[randy][randx] < 0) {
+    while (this.validloc[randy][randx] !==98) {
       randx = this.getRandomInt(20)
       randy = this.getRandomInt(12)
       xx = this.xpos(randx)
@@ -63,6 +63,7 @@ export class Display {
     
     plant.draw(xx, yy, ctx);
   }
+  console.log(this.validloc)
     plantloc.forEach((loc) => { this.loc.push(loc) })
     // console.log(this.plantsloc)
 }
