@@ -207,7 +207,7 @@ document.addEventListener("DOMContentLoaded", function() {
       // if ((lx > 226 && lx < 300) && (ly > 265 && ly < 315)) {
         ctx.clearRect(0, 0, pcanvas.width, pcanvas.height)
         fctx.clearRect(0, 0, fcanvas.width, fcanvas.height)
-        console.log(`Let's play again`)
+        // console.log(`Let's play again`)
         reload()
       // }
       // else if ((lx > 405 && lx < 500) && (ly > 265 && ly < 315)) {
@@ -262,7 +262,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     /////// WIN STATE ///////////
     else if (keys['ArrowLeft'] && (human.y > 260 && human.x < 150)) {
-      console.log('winner!')
+      // console.log('winner!')
       ctx.beginPath();
       fctx.clearRect(0, 0, fcanvas.width, fcanvas.height)
       ctx.clearRect(0, 0, canvas.width, canvas.height)
