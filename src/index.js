@@ -185,15 +185,15 @@ document.addEventListener("DOMContentLoaded", function() {
       // ctx.fillStyle = 'green'
       // ctx.fillRect(205, 200, 300, 75)
       ctx.fillStyle = 'white'
-      ctx.fillText("Resetting in...", 225, 250)
-      ctx.fillText("3", 300, 340)
-      resetTimeint()
+      ctx.fillText("Resetting...", 225, 250)
+      // ctx.fillText("3", 300, 340)
+      // resetTimeint()
     }, 2000)
 
 
     window.setTimeout(() => {
       window.location.reload()
-    }, 5000)
+    }, 3000)
   }
 
   
