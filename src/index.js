@@ -1,13 +1,9 @@
 import { Display } from './scripts/game_setup.js'
-import { level1Obstacles, validPlants, levelClear, validity } from './scripts/level_1.js'
-
-
 
 document.addEventListener("DOMContentLoaded", function() {
   let display = new Display()
   display.level_setup(1)
   
-  const validloc = display.validloc
   const canvas = document.getElementById("game-canvas");
   const ctx = canvas.getContext("2d");
   const pcanvas = document.getElementById("player-canvas");
@@ -120,15 +116,6 @@ document.addEventListener("DOMContentLoaded", function() {
     delete keys[e.key];
   });
 
-  // if (validloc.includes([human.x, human.y])) {
-  //   ctx.clearRect(0, 0, pcanvas.width, pcanvas.height)
-  //   ctx.fillStyle = "black"
-  //   ctx.fillRect(32, 32, canvas.width - 64, canvas.height - 97)
-  //   ctx.font = "50px Arial";
-  //   ctx.fillStyle = 'white'
-  //   ctx.fillText("OUR PLANTS. ITS BROKEN", 225, 250)
-  // }
-
   function drawHuman(x, y, ctx) {
     let drawing = new Image()
     drawing.src = human.src
@@ -147,14 +134,10 @@ document.addEventListener("DOMContentLoaded", function() {
     ctx.fillText("cluttered with plant pots, plant shelves,", 100, 200)
     ctx.fillText("hanging gardens, kitchen grow lights, and more....", 100, 220)
 
-    
-    
     ctx.fillStyle = "green"
     ctx.fillRect(275, 290, 125, 60)
     ctx.fillStyle = "white"
     ctx.fillText("START", 300, 325)
-    
-
 
   }
 
@@ -166,68 +149,67 @@ document.addEventListener("DOMContentLoaded", function() {
     }
   }
 
-  // function animate() {
-  //   var animation = window.setInterval(function () {
-  //     movePlayer();
-  //     pctx.clearRect(0, 0, pcanvas.width, pcanvas.height)
-  //     drawHuman(human.x, human.y, pctx)
-  //   }, 1)
-
-  // }
 
   function animate() {
-  var animation = window.setInterval(function () {
-    movePlayer();
-    pctx.clearRect(0, 0, pcanvas.width, pcanvas.height)
-    drawHuman(human.x, human.y, pctx)
-  }, 1)
+    window.setInterval(function () {
+      movePlayer();
+      pctx.clearRect(0, 0, pcanvas.width, pcanvas.height)
+      drawHuman(human.x, human.y, pctx)
+    }, 1)
+  }
 
+  var resetSec = 2
+
+  function resetTimeint() { resetCounter = setInterval(resetTimer, 1000) }
+
+  function resetTimer() {
+    ctx.clearRect(300, 300, 75, 50)
+    ctx.fillStyle = 'black'
+    ctx.fillRect(300, 300, 75, 50)
+    ctx.font = "50px Arial"
+    ctx.fillStyle = 'white'
+    ctx.fillText(`${resetSec}`, 300, 340)
+    resetSec = resetSec - 1;
+    if (resetSec <= 0) {
+      clearInterval(resetCounter);
+      return;
+    }
   }
 
   function replay() {
-    window.setTimeout(function () {
+    let pa = window.setTimeout(function () {
       ctx.clearRect(0, 0, pcanvas.width, pcanvas.height)
       ctx.fillStyle = "black"
       ctx.fillRect(32, 32, canvas.width - 64, canvas.height - 97)
       ctx.font = "50px Arial";
-      ctx.fillStyle = 'green'
-      ctx.fillRect(205, 200, 300, 75)
+      // ctx.fillStyle = 'green'
+      // ctx.fillRect(205, 200, 300, 75)
       ctx.fillStyle = 'white'
-      // ctx.stroke()
-      ctx.fillText("Play Again?", 225, 250)
-      // ctx.font = "30px Arial";
-      // ctx.fillText("Yes", 240, 300)
-      // ctx.fillText("No", 430, 300)
+      ctx.fillText("Resetting in...", 225, 250)
+      ctx.fillText("3", 300, 340)
+      resetTimeint()
     }, 2000)
 
-    window.addEventListener('click', function(e){
-      // const rect = canvas.getBoundingClientRect();
-      // const lx = e.clientX - rect.left;
-      // const ly = e.clientY - rect.top;
-      // if ((lx > 226 && lx < 300) && (ly > 265 && ly < 315)) {
-        ctx.clearRect(0, 0, pcanvas.width, pcanvas.height)
-        fctx.clearRect(0, 0, fcanvas.width, fcanvas.height)
-        reload()
-      // }
-      // else if ((lx > 405 && lx < 500) && (ly > 265 && ly < 315)) {
-      //   ctx.clearRect(0, 0, pcanvas.width, pcanvas.height)
-      //   fctx.clearRect(0, 0, fcanvas.width, fcanvas.height)
-      //   ctx.fillStyle = "black"
-      //   ctx.fillRect(32, 32, canvas.width - 64, canvas.height - 97)
-      //   ctx.font = "50px Arial";
-      //   ctx.fillStyle = 'white'
-      //   ctx.fillText("Goodbye!", 225, 250)
-      // }
 
-    })
+    window.setTimeout(() => {
+      window.location.reload()
+    }, 5000)
   }
 
+  
 
-  function reload(){
-    reload = location.reload();
-  }
+
+   // window.addEventListener('click', function (e) {
+    //     clearTimeout(pa)
+        
+    // })
+  // function reload(){
+  //   location.reload();
+  // }
 
   function movePlayer() {
+
+    let valid = display.validloc
     
     /////// UP WALLS ///////////
     if (keys['ArrowUp'] && (human.x < 220 && human.y === 190)) { }
@@ -236,8 +218,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     ////// UP GAME BORDER ///////
     else if (keys['ArrowUp'] && ((human.y > 0) && 
-    ((validity[Math.floor(human.y / 32)][Math.floor(human.x / 32)] < 0) 
-      // && (validloc[Math.floor(human.y / 32)][Math.floor(human.x / 32)] > 0)
+    ((valid[Math.floor(human.y / 32)][Math.floor(human.x / 32)] < 0) 
     ))) {
       human.y -= 1;
     }
@@ -248,8 +229,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     ////// DOWN GAME BORDER ///////
     else if (keys['ArrowDown'] && ((human.y < 384) && 
-    ((validity[Math.floor(human.y / 32) + 1][Math.floor(human.x / 32)] < 0) 
-      // && (validloc[Math.floor(human.y / 32)][Math.floor(human.x / 32)] > 0)
+    ((valid[Math.floor(human.y / 32) + 1][Math.floor(human.x / 32)] < 0) 
     ))) {
       human.y += 1;
     }
@@ -275,8 +255,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
      /////// LEFT GAME BORDER ///////////
     else if (keys['ArrowLeft'] && ((human.x > 32) &&
-    ((validity[Math.floor(human.y / 32)][Math.floor(human.x / 32) - 1] < 0)
-      // && (validloc[Math.floor(human.y / 32)][Math.floor(human.x / 32) + 1] < 0 )
+    ((valid[Math.floor(human.y / 32)][Math.floor(human.x / 32) - 1] < 0)
     ))) {
       human.x -= 1;
     }
@@ -286,25 +265,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
     /////// RIGHT GAME BORDER ///////////
     else if (keys['ArrowRight'] && (human.x < 639 && 
-      ((validity[Math.floor(human.y / 32)][Math.floor(human.x / 32)] < 0)
-      // && (validloc[Math.floor(human.y / 32)][Math.floor(human.x / 32)] > 0)
+      ((valid[Math.floor(human.y / 32)][Math.floor(human.x / 32)] < 0)
       ))) {
       human.x += 1;
     } 
   }
   
 })
-
-// function doKeyDown(e) {
-//   if (e.keyCode === 87 || e.keyCode === 38) {
-//     human.move([0, -32])
-//   }
-//   if (e.keyCode === 83 || e.keyCode === 40) {
-//     human.move([0, 32])
-//   }
-//   if (e.keyCode === 65 || e.keyCode === 37) {
-//     human.move([-32, 0])
-//   }
-//   if (e.keyCode === 68 || e.keyCode === 39) {
-//     human.move([32, 0])
-//   }
