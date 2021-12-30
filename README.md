@@ -1,4 +1,4 @@
-# [JS Game: Plant Palace](https://darothmedia.github.io/plant-palace-2/)
+# [JS Game: Plant Palace](https://darothmedia.github.io/plant-palace/)
 
 ![Plant Palace Header](https://github.com/darothmedia/plant-palace/blob/main/img/plant-palace-logo.png "Plant Palace Logo")
 
