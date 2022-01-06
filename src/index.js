@@ -25,6 +25,7 @@ document.addEventListener("DOMContentLoaded", function() {
     peetimeout()
     mission()
     timeint()
+    pcanvas.removeEventListener('click', load)
   }
 
 
