@@ -57,16 +57,15 @@ canvas {
 .buttons {
   display: block;
   position: absolute;
-  left: 300px;
+  left: 315px;
   top: 600px;
   justify-content: center;
+  cursor: pointer;
 }
 
 .buttons button {
   padding: 10px;
   margin-top: -70px;
-  /* margin-right: 50px; */
-  cursor: pointer;
 }
 
 .buttons button a {
