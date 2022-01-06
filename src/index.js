@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function() {
   const fctx = fcanvas.getContext("2d");
 
   gameStart()
-  window.addEventListener('click', function (loader) {
+  EventTarget.addEventListener('click', function (loader) {
     load()
   })
 
